@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fff0f5" />
+    <title>Một món quà dành cho Trang 💗</title>
+
+    <style>
+      :root {
+        --pink: #dc467d;
+        --pink-dark: #ad2858;
+        --text: #513947;
+        --muted: #826b77;
+        --line: #f3d6e1;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 28px 16px;
+        display: grid;
+        place-items: center;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 10% 10%, #ffd5e5, transparent 42%),
+          radial-gradient(circle at 90% 85%, #e6dcff, transparent 42%), #fff5f8;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      button:focus-visible,
+      input:focus-visible {
+        outline: 3px solid #a75de0;
+        outline-offset: 4px;
+      }
+
+      .floating-hearts {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .floating-hearts span {
+        position: absolute;
+        bottom: -70px;
+        color: #e85d91;
+        opacity: 0;
+        animation: float-up 15s linear infinite;
+        font-size: 24px;
+      }
+
+      .floating-hearts span:nth-child(1) {
+        left: 8%;
+        animation-delay: 0s;
+      }
+
+      .floating-hearts span:nth-child(2) {
+        left: 26%;
+        animation-delay: 4s;
+        font-size: 17px;
+      }
+
+      .floating-hearts span:nth-child(3) {
+        left: 47%;
+        animation-delay: 8s;
+      }
+
+      .floating-hearts span:nth-child(4) {
+        left: 72%;
+        animation-delay: 2s;
+        font-size: 19px;
+      }
+
+      .floating-hearts span:nth-child(5) {
+        left: 91%;
+        animation-delay: 6s;
+      }
+
+      @keyframes float-up {
+        0% {
+          transform: translateY(0) rotate(-12deg);
+          opacity: 0;
+        }
+
+        15%,
+        75% {
+          opacity: 0.3;
+        }
+
+        100% {
+          transform: translateY(-115vh) rotate(18deg);
+          opacity: 0;
+        }
+      }
+
+      .card {
+        position: relative;
+        z-index: 1;
+        width: min(100%, 760px);
+        background: rgba(255, 255, 255, 0.94);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 28px;
+        box-shadow: 0 24px 70px #9e41631c;
+        overflow: hidden;
+      }
+
+      .login {
+        width: min(100%, 420px);
+        padding: 36px 28px;
+        text-align: center;
+      }
+
+      .heart-picture {
+        display: block;
+        width: 76px;
+        height: 76px;
+        margin: 0 auto 14px;
+        filter: drop-shadow(0 8px 12px #e9548d26);
+        animation: heartbeat 2.4s ease-in-out infinite;
+      }
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.08);
+        }
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(25px, 5vw, 34px);
+        line-height: 1.3;
+        color: var(--pink-dark);
+      }
+
+      .intro {
+        margin: 0 0 26px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .field {
+        margin-bottom: 17px;
+        text-align: left;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      input {
+        width: 100%;
+        padding: 14px 15px;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        color: var(--text);
+        background: #fffafd;
+      }
+
+      input:focus {
+        border-color: var(--pink);
+      }
+
+      .button {
+        padding: 13px 20px;
+        border: 0;
+        border-radius: 13px;
+        font-weight: 600;
+        transition:
+          transform 0.2s,
+          background 0.2s;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .primary {
+        background: var(--pink);
+        color: white;
+        box-shadow: 0 7px 18px #dc467d26;
+      }
+
+      .primary:hover {
+        background: var(--pink-dark);
+      }
+
+      .secondary {
+        background: #fff0f5;
+        color: var(--pink-dark);
+      }
+
+      .button:disabled {
+        opacity: 0.45;
+        cursor: default;
+        transform: none;
+      }
+
+      .login-button {
+        width: 100%;
+        margin-top: 5px;
+      }
+
+      .error {
+        min-height: 22px;
+        margin: 15px 0 0;
+        font-size: 14px;
+        color: #b52d51;
+      }
+
+      .photo-wrap {
+        position: relative;
+        background: #f9e5ee;
+      }
+
+      .photo {
+        display: block;
+        width: 100%;
+        height: clamp(220px, 42vw, 350px);
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .photo-badge {
+        position: absolute;
+        left: 18px;
+        bottom: 18px;
+        padding: 9px 14px;
+        border-radius: 999px;
+        color: #fff;
+        background: #513947b3;
+        font-size: 14px;
+      }
+
+      .photo-fallback {
+        padding: 45px 20px;
+        text-align: center;
+        line-height: 1.8;
+        color: var(--pink-dark);
+      }
+
+      .content {
+        padding: 28px 32px 30px;
+      }
+
+      .page-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .progress-track {
+        height: 6px;
+        margin-bottom: 26px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #fae5ed;
+      }
+
+      .progress-fill {
+        width: 10%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #f48eb3, #d9467c);
+        transition: width 0.35s;
+      }
+
+      .letter h2 {
+        margin: 0 0 18px;
+        color: var(--pink-dark);
+        line-height: 1.4;
+        font-size: clamp(23px, 4vw, 29px);
+      }
+
+      .letter p {
+        margin: 0 0 16px;
+        font-size: 17px;
+        line-height: 1.9;
+        white-space: pre-line;
+      }
+
+      .quote {
+        padding: 15px 18px;
+        margin-top: 22px;
+        border-left: 4px solid #eb8bac;
+        border-radius: 0 12px 12px 0;
+        background: #fff2f7;
+        color: #96506b;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .navigation {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 26px;
+      }
+
+      .signature {
+        margin: 23px 0 0;
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .ending {
+        margin-top: 24px;
+        padding: 20px;
+        border-radius: 16px;
+        background: #fff2f7;
+        text-align: center;
+        line-height: 1.8;
+      }
+
+      .ending .heart-picture {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 8px;
+      }
+
+      .fade-in {
+        animation: fade-in 0.45s ease both;
+      }
+
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 18px 12px;
+        }
+
+        .content {
+          padding: 23px 20px;
+        }
+
+        .login {
+          padding: 30px 22px;
+        }
+
+        .letter p {
+          font-size: 16px;
+        }
+
+        .navigation .button {
+          padding: 12px 14px;
+          font-size: 14px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="floating-hearts" aria-hidden="true">
+      <span>♥</span>
+      <span>♥</span>
+      <span>♥</span>
+      <span>♥</span>
+      <span>♥</span>
+    </div>
+
+    <!-- MÀN HÌNH ĐĂNG NHẬP -->
+    <main id="loginScreen" class="card login">
+      <svg
+        class="heart-picture"
+        viewBox="0 0 100 100"
+        role="img"
+        aria-label="Trái tim màu hồng"
+      >
+        <path
+          fill="#e9578d"
+          d="M50 88 13 51C-9 29 22-3 44 20L50 27 56 20C78-3 109 29 87 51Z"
+        />
+        <path
+          d="M19 34c0-9 8-15 16-12"
+          fill="none"
+          stroke="#ffffff"
+          stroke-width="5"
+          stroke-linecap="round"
+          opacity=".7"
+        />
+      </svg>
+
+      <h1>Một món quà nhỏ 💗</h1>
+      <p class="intro">
+        Có những lời nhắn đang chờ bạn.<br />
+        Đăng nhập để mở món quà này nhé.
+      </p>
+
+      <form id="loginForm">
+        <div class="field">
+          <label for="username">Tài khoản</label>
+          <input
+            id="username"
+            type="text"
+            autocomplete="off"
+            autocapitalize="none"
+            spellcheck="false"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="password">Mật khẩu</label>
+          <input id="password" type="password" autocomplete="off" required />
+        </div>
+
+        <button type="submit" class="button primary login-button">
+          Mở món quà 💌
+        </button>
+
+        <p id="loginError" class="error" role="alert"></p>
+      </form>
+    </main>
+
+    <!-- MÀN HÌNH ĐỌC LỜI NHẮN -->
+    <main id="giftScreen" class="card" hidden>
+      <div class="photo-wrap">
+        <img
+          id="giftPhoto"
+          class="photo"
+          src="https://www.genspark.ai/api/files/s/ZwsJ59rg"
+          alt="Bức ảnh được chọn riêng cho món quà dành cho Trang"
+          referrerpolicy="no-referrer"
+        />
+
+        <div id="photoFallback" class="photo-fallback" hidden>
+          💗<br />
+          Một món quà nhỏ, gửi đến Trang bằng cả sự quan tâm.
+        </div>
+
+        <div class="photo-badge">Dành riêng cho Trang 💗</div>
+      </div>
+
+      <div class="content">
+        <div class="page-meta">
+          <span>Mười trang, một lời động viên</span>
+          <span id="pageCounter">Trang 1 / 10</span>
+        </div>
+
+        <div
+          id="readingProgress"
+          class="progress-track"
+          role="progressbar"
+          aria-label="Tiến độ đọc"
+          aria-valuemin="0"
+          aria-valuemax="10"
+          aria-valuenow="1"
+        >
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+
+        <article id="letter" class="letter" aria-live="polite">
+          <h2 id="pageTitle" tabindex="-1"></h2>
+          <p id="paragraphOne"></p>
+          <p id="paragraphTwo"></p>
+          <div id="pageQuote" class="quote"></div>
+        </article>
+
+        <div id="ending" class="ending" hidden>
+          <svg
+            class="heart-picture"
+            viewBox="0 0 100 100"
+            role="img"
+            aria-label="Trái tim gửi đến Trang"
+          >
+            <path
+              fill="#e9578d"
+              d="M50 88 13 51C-9 29 22-3 44 20L50 27 56 20C78-3 109 29 87 51Z"
+            />
+          </svg>
+
+          <strong>Trang đã đọc hết món quà rồi 💗</strong><br />
+          Mong những lời này giúp Trang thấy lòng nhẹ hơn một chút.
+        </div>
+
+        <nav class="navigation" aria-label="Chuyển trang lời nhắn">
+          <button id="previousButton" class="button secondary" type="button">
+            ← Trang trước
+          </button>
+
+          <button id="nextButton" class="button primary" type="button">
+            Trang tiếp theo →
+          </button>
+        </nav>
+
+        <p class="signature">
+          Gửi Trang, từ một người luôn mong Trang vui.<br />
+          💗
+        </p>
+      </div>
+    </main>
+
+    <script>
+      // Thông tin này chỉ nằm trong mã nguồn, không hiển thị gợi ý.
+      const ACCOUNT = "BE'TRANG";
+      const PASSWORD = "0809";
+
+      const pages = [
+        {
+          title: "1. Gửi Trang, người đang cố gắng mỗi ngày 💌",
+          first:
+            "Trang à, món quà nhỏ này dành cho những ngày bạn bận rộn với công việc, những lúc bạn thấy mệt và cả những khi bạn cần một lời động viên thật nhẹ nhàng.",
+          second:
+            "Mình mong Trang luôn giữ được tinh thần cố gắng trong công việc của mình. Nhưng cố gắng không có nghĩa là phải gồng lên mọi lúc. Bạn cũng xứng đáng được nghỉ ngơi, được quan tâm và được vui.",
+          quote:
+            "Chỉ cần hôm nay bạn vẫn muốn bước tiếp, đó đã là một điều đáng trân trọng.",
+        },
+        {
+          title: "2. Những nỗ lực nhỏ đều có ý nghĩa 🌷",
+          first:
+            "Có những việc Trang làm mỗi ngày trông rất bình thường: hoàn thành một nhiệm vụ, học thêm một điều mới, giải quyết một vấn đề hoặc kiên nhẫn làm lại khi chưa ổn.",
+          second:
+            "Nhưng chính những điều nhỏ ấy đang giúp bạn trưởng thành hơn. Đừng vội xem nhẹ sự cố gắng của mình chỉ vì kết quả chưa xuất hiện ngay. Mỗi bước đi đều có giá trị riêng.",
+          quote:
+            "Tiến bộ không nhất thiết phải thật lớn. Tiến bộ từng chút vẫn là tiến bộ.",
+        },
+        {
+          title: "3. Mệt thì nghỉ một chút nhé ☁️",
+          first:
+            "Nếu một ngày công việc khiến Trang thấy quá tải, bạn có thể dừng lại một chút. Uống nước, ăn một bữa tử tế, đứng dậy đi vài bước hoặc cho mình một khoảng yên tĩnh.",
+          second:
+            "Nghỉ ngơi không làm bạn kém chăm chỉ. Đó là cách bạn chăm sóc bản thân để có thể tiếp tục hành trình của mình. Mình mong Trang làm việc bằng sự bền bỉ, chứ không phải bằng việc quên mất sức khỏe.",
+          quote: "Công việc quan trọng, nhưng Trang cũng quan trọng.",
+        },
+        {
+          title: "4. Đừng vội so sánh mình với ai 🌱",
+          first:
+            "Mỗi người có một điểm bắt đầu, một hoàn cảnh và một nhịp đi riêng. Vì vậy, Trang không cần phải giống bất kỳ ai để chứng minh rằng mình đang làm tốt.",
+          second:
+            "Bạn có thể học hỏi từ người khác, nhưng đừng dùng thành công của họ để phủ nhận những nỗ lực của mình. Hãy nhìn lại xem hôm nay bạn đã hiểu thêm điều gì, làm tốt hơn điều gì và mạnh dạn hơn ở đâu.",
+          quote:
+            "Đi theo nhịp của mình không có nghĩa là bạn đang đi sai đường.",
+        },
+        {
+          title: "5. Chưa làm tốt không có nghĩa là không thể 🌼",
+          first:
+            "Trong công việc, sẽ có lúc Trang gặp một điều chưa biết hoặc làm một việc chưa như mong muốn. Những lúc như vậy có thể khiến bạn buồn, nhưng chúng không định nghĩa toàn bộ khả năng của bạn.",
+          second:
+            "Bạn được phép hỏi, được phép học và được phép sửa lại. Một lần chưa thành công có thể giúp mình hiểu rõ hơn điều cần thay đổi. Đừng vì một ngày khó khăn mà kết luận rằng bản thân không đủ tốt nhé.",
+          quote:
+            "Bạn không cần biết hết ngay từ đầu. Bạn có thể học từng bước.",
+        },
+        {
+          title: "6. Ghi nhận bản thân nhiều hơn nhé ✨",
+          first:
+            "Trang thử dành một chút thời gian để nhớ lại những việc mình đã hoàn thành nhé. Có thể đó là một công việc khó, một lần bạn dám lên tiếng hoặc một ngày bạn đã kiên trì dù không có nhiều năng lượng.",
+          second:
+            "Những điều ấy xứng đáng được ghi nhận. Đừng chỉ nhìn vào phần chưa làm được mà quên mất phần mình đã cố gắng. Bạn có thể tự nói với bản thân: hôm nay mình đã làm được một điều đáng quý.",
+          quote:
+            "Hãy đối xử với bản thân bằng sự dịu dàng mà bạn dành cho người mình thương.",
+        },
+        {
+          title: "7. Không cần ôm mọi việc một mình 🤍",
+          first:
+            "Nếu công việc quá nhiều hoặc có điều khiến Trang bối rối, bạn không cần phải im lặng chịu đựng. Khi có thể, hãy trao đổi với người phù hợp, hỏi thêm hướng dẫn hoặc nói rõ điều mình đang cần.",
+          second:
+            "Biết tìm sự hỗ trợ cũng là một kỹ năng. Bạn không kém cỏi khi cần người khác giúp đỡ. Mình mong Trang luôn có những người biết lắng nghe và tôn trọng bạn trong hành trình làm việc của mình.",
+          quote: "Mạnh mẽ không có nghĩa là phải làm mọi thứ một mình.",
+        },
+        {
+          title: "8. Đừng quên cuộc sống ngoài công việc 🌸",
+          first:
+            "Mình mong Trang không chỉ hoàn thành công việc mà còn có những ngày thật dễ chịu: một bữa ăn ngon, một giấc ngủ đủ, một buổi đi dạo hoặc một cuộc trò chuyện khiến bạn mỉm cười.",
+          second:
+            "Bạn không chỉ là những nhiệm vụ cần hoàn thành hay những kết quả cần đạt được. Bạn còn có sở thích, cảm xúc và những điều riêng rất đáng quý. Hãy giữ lại một chút thời gian cho chính mình nhé.",
+          quote: "Một cuộc sống tốt cũng cần những khoảng bình yên.",
+        },
+        {
+          title: "9. Cứ đi từng bước thôi, Trang nhé 🌻",
+          first:
+            "Khi mục tiêu còn xa, Trang có thể chia nó thành những việc nhỏ hơn. Chọn một việc quan trọng, làm từng phần và cho mình thời gian để điều chỉnh. Bạn không phải giải quyết tất cả trong một ngày.",
+          second:
+            "Có ngày bạn đi nhanh, có ngày bạn đi chậm. Điều đó rất bình thường. Mình mong bạn giữ được sự kiên trì, đồng thời đủ dịu dàng với bản thân khi cần đổi cách làm hoặc nghỉ một chút.",
+          quote:
+            "Một bước nhỏ hôm nay vẫn có thể đưa bạn gần hơn đến điều mình mong muốn.",
+        },
+        {
+          title: "10. Chúc Trang luôn vững lòng 💗",
+          first:
+            "Đến trang cuối rồi, mình chỉ muốn gửi Trang một lời chúc thật chân thành: chúc bạn luôn giữ được tinh thần cố gắng trong công việc, có cơ hội học hỏi và tìm được niềm vui trong những điều mình làm.",
+          second:
+            "Mong những nỗ lực của Trang được ghi nhận, những ngày khó khăn có người sẻ chia và những ngày bình thường cũng có điều khiến bạn mỉm cười. Cứ cố gắng theo cách phù hợp với mình nhé. Và đừng quên chăm sóc bản thân thật tốt.",
+          quote:
+            "Chúc Trang làm việc bằng sự tự tin, bước tiếp bằng sự bền bỉ và sống bằng một trái tim được yêu thương.",
+        },
+      ];
+
+      const loginScreen = document.getElementById("loginScreen");
+      const giftScreen = document.getElementById("giftScreen");
+      const loginForm = document.getElementById("loginForm");
+      const loginError = document.getElementById("loginError");
+
+      const letter = document.getElementById("letter");
+      const pageTitle = document.getElementById("pageTitle");
+      const paragraphOne = document.getElementById("paragraphOne");
+      const paragraphTwo = document.getElementById("paragraphTwo");
+      const pageQuote = document.getElementById("pageQuote");
+
+      const pageCounter = document.getElementById("pageCounter");
+      const readingProgress = document.getElementById("readingProgress");
+      const progressFill = document.getElementById("progressFill");
+      const previousButton = document.getElementById("previousButton");
+      const nextButton = document.getElementById("nextButton");
+      const ending = document.getElementById("ending");
+
+      let currentPage = 0;
+      let unlocked = false;
+
+      function showPage(moveFocus = true) {
+        const page = pages[currentPage];
+        const isLastPage = currentPage === pages.length - 1;
+
+        pageTitle.textContent = page.title;
+        paragraphOne.textContent = page.first;
+        paragraphTwo.textContent = page.second;
+        pageQuote.textContent = page.quote;
+
+        pageCounter.textContent = `Trang ${currentPage + 1} / ${pages.length}`;
+
+        progressFill.style.width = `${((currentPage + 1) / pages.length) * 100}%`;
+
+        readingProgress.setAttribute("aria-valuenow", String(currentPage + 1));
+
+        previousButton.disabled = currentPage === 0;
+        nextButton.textContent = isLastPage
+          ? "Đọc lại từ đầu ↺"
+          : "Trang tiếp theo →";
+
+        ending.hidden = !isLastPage;
+
+        letter.classList.remove("fade-in");
+        void letter.offsetWidth;
+        letter.classList.add("fade-in");
+
+        if (moveFocus) {
+          pageTitle.focus({ preventScroll: true });
+          window.scrollTo({ top: 0, behavior: "auto" });
+        }
+      }
+
+      loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        if (username === ACCOUNT && password === PASSWORD) {
+          unlocked = true;
+          currentPage = 0;
+          loginError.textContent = "";
+          loginScreen.hidden = true;
+          giftScreen.hidden = false;
+
+          document.getElementById("password").value = "";
+          showPage();
+        } else {
+          loginError.textContent =
+            "Thông tin đăng nhập chưa đúng. Bạn thử lại nhé.";
+        }
+      });
+
+      previousButton.addEventListener("click", function () {
+        if (!unlocked || currentPage === 0) return;
+
+        currentPage--;
+        showPage();
+      });
+
+      nextButton.addEventListener("click", function () {
+        if (!unlocked) return;
+
+        if (currentPage < pages.length - 1) {
+          currentPage++;
+        } else {
+          currentPage = 0;
+        }
+
+        showPage();
+      });
+
+      const giftPhoto = document.getElementById("giftPhoto");
+
+      function showPhotoFallback() {
+        giftPhoto.hidden = true;
+        document.getElementById("photoFallback").hidden = false;
+      }
+
+      giftPhoto.addEventListener("error", showPhotoFallback);
+
+      if (giftPhoto.complete && giftPhoto.naturalWidth === 0) {
+        showPhotoFallback();
+      }
+    </script>
+  </body>
+</html>
